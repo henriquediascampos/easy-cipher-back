@@ -1,0 +1,76 @@
+plugins {
+	id "org.springframework.boot" version "2.5.4"
+}
+
+ext {
+	set("spring", "2.5.4")
+	set("lombok", "1.18.20")
+	set("postgres", "42.2.23")
+	set("gson", "2.8.8")
+}
+
+allprojects {
+	
+	group = "com"
+	version = "0.0.1-SNAPSHOT"
+
+}
+
+subprojects {
+	repositories {
+		mavenCentral()
+	}
+	
+	apply plugin: "java"
+    apply plugin: "java-library"
+
+	dependencies {
+		implementation "org.springframework.boot:spring-boot-starter:${spring}"
+		implementation "org.springframework.boot:spring-boot-devtools:${spring}"
+		compileOnly("org.springframework.boot:spring-boot-devtools:${spring}")
+		compileOnly "org.projectlombok:lombok:${lombok}"
+		annotationProcessor "org.projectlombok:lombok:${lombok}"
+	}
+}
+
+project(":easy-cipher-common") {
+    sourceCompatibility = "11"
+	dependencies { 
+		implementation "com.google.code.gson:gson:${gson}"
+	}
+}
+
+project(":easy-cipher-entity") {
+    sourceCompatibility = "11"
+
+	dependencies {
+		api "org.springframework.boot:spring-boot-starter-data-jpa:${spring}"
+		api "org.postgresql:postgresql:${postgres}"
+		api project(":easy-cipher-common")
+		api 'javax.validation:validation-api:2.0.1.Final'
+	}
+}
+
+project(":easy-cipher-service") {
+    sourceCompatibility = "11"
+
+	dependencies {
+		api project(":easy-cipher-entity")
+	}
+}
+
+project(":easy-cipher-controller") {
+    sourceCompatibility = "11"
+	apply plugin: "org.springframework.boot"
+
+	dependencies {
+		api project(":easy-cipher-service")
+		implementation "org.springframework.boot:spring-boot-starter-web:${spring}"
+		implementation "org.springframework.boot:spring-boot-starter-webflux:${spring}"
+
+		implementation "org.springframework.boot:spring-boot-starter-validation:${spring}"
+		implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${spring}"
+		// testImplementation "org.springframework.boot:spring-boot-starter-test"
+	}
+
+}
