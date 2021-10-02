@@ -9,5 +9,4 @@ public class EasyCipherBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EasyCipherBackApplication.class, args);
 	}
-
 }

@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 public abstract class AbstractController<T extends AbstractEntity, ID> {
     @Autowired(required = false)
     private AbstractService<T, ID> service;
@@ -29,6 +27,7 @@ public abstract class AbstractController<T extends AbstractEntity, ID> {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<T> list(@RequestParam(required = false) final Map<String, String> parameters) {
+        System.out.println();
         return service.list(parameters);
     }
 

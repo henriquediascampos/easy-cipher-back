@@ -5,8 +5,10 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-// import javax.validation.constraints.NotNull;
 
 import org.springframework.context.annotation.ComponentScan;
 
@@ -17,6 +19,10 @@ import lombok.Setter;
 @ComponentScan
 @Getter @Setter
 public abstract class AbstractEntity implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean deleted;

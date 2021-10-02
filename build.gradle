@@ -10,7 +10,7 @@ ext {
 }
 
 allprojects {
-	
+
 	group = "com"
 	version = "0.0.1-SNAPSHOT"
 
@@ -20,7 +20,7 @@ subprojects {
 	repositories {
 		mavenCentral()
 	}
-	
+
 	apply plugin: "java"
     apply plugin: "java-library"
 
@@ -35,8 +35,11 @@ subprojects {
 
 project(":easy-cipher-common") {
     sourceCompatibility = "11"
-	dependencies { 
-		implementation "com.google.code.gson:gson:${gson}"
+	dependencies {
+		api "com.google.code.gson:gson:${gson}"
+		api "org.springframework.boot:spring-boot-starter-webflux:${spring}"
+		implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${spring}"
+
 	}
 }
 
@@ -66,10 +69,7 @@ project(":easy-cipher-controller") {
 	dependencies {
 		api project(":easy-cipher-service")
 		implementation "org.springframework.boot:spring-boot-starter-web:${spring}"
-		implementation "org.springframework.boot:spring-boot-starter-webflux:${spring}"
-
 		implementation "org.springframework.boot:spring-boot-starter-validation:${spring}"
-		implementation "org.springframework.boot:spring-boot-starter-thymeleaf:${spring}"
 		// testImplementation "org.springframework.boot:spring-boot-starter-test"
 	}
 

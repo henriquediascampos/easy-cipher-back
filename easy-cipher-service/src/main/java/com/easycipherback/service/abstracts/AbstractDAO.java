@@ -18,8 +18,8 @@ import com.easycipherback.entity.abstracts.AbstractEntity;
 public abstract class AbstractDAO<T extends AbstractEntity, ID> {
 
     @PersistenceContext
-    protected EntityManager em; 
-    
+    protected EntityManager entityManager;
+
     private final Class<T> clazz;
 
     @SuppressWarnings("unchecked")
@@ -30,38 +30,38 @@ public abstract class AbstractDAO<T extends AbstractEntity, ID> {
     public T save(final T entity) {
         entity.setCreatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
         entity.setDeleted(false);
-        em.persist(entity);
+        entityManager.persist(entity);
         return entity;
     }
 
     public T merge(final T entity) {
-        return em.merge(entity);
+        return entityManager.merge(entity);
     }
 
     public T update(final T entity) {
         entity.setUpdatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
-        return em.merge(entity);
+        return entityManager.merge(entity);
     }
 
     public T findById(final UUID uuid) {
-        return em.find(clazz, uuid);
+        return entityManager.find(clazz, uuid);
 	}
 
     public List<T> findAll() {
-        final CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(clazz);
+        final CriteriaQuery<T> query = entityManager.getCriteriaBuilder().createQuery(clazz);
         query.from(clazz);
-        return em.createQuery(query).getResultList();
+        return entityManager.createQuery(query).getResultList();
     }
-    
+
     public Query createQuery(String alias) {
-        return em.createQuery(clazz.getSimpleName() + " " + alias);
+        return entityManager.createQuery(clazz.getSimpleName() + " " + alias);
     }
 
     public boolean delete(UUID id) {
         final var entity = findById(id);
         entity.setUpdatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
         entity.setDeleted(true);
-        em.persist(entity);
+        entityManager.persist(entity);
         return true;
     }
 }

@@ -2,7 +2,7 @@ package com.easycipherback.entity.cipher;
 
 import java.util.UUID;
 import javax.validation.constraints.NotNull;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,13 +31,16 @@ public class Cipher extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    
+
     @NotNull
+    @Column(length = 5000)
     private String lyric;
     @NotNull
     private String title;
-    
+
+    @Column(length = 5000)
     private String cipher;
+
     private String tone;
 
     @Enumerated(EnumType.STRING)
