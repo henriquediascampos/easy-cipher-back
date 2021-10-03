@@ -1,14 +1,10 @@
 package com.easycipherback.entity.cipher;
 
-import java.util.UUID;
-import javax.validation.constraints.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import com.easycipherback.entity.abstracts.AbstractEntity;
 import com.easycipherback.entity.enums.EVision;
@@ -27,10 +23,6 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Where(clause = "deleted=false")
 public class Cipher extends AbstractEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
 
     @NotNull
     @Column(length = 5000)

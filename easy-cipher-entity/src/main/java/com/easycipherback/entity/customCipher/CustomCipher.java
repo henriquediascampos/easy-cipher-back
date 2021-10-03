@@ -10,7 +10,8 @@ import com.easycipherback.entity.abstracts.AbstractEntity;
 import com.easycipherback.entity.cipher.Cipher;
 import com.easycipherback.entity.songbook.Songbook;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
+@Where(clause = "deleted=false")
 public class CustomCipher extends AbstractEntity {
 
     @NotNull

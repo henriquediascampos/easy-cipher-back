@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CipherService extends AbstractService<Cipher, UUID> {
 
-    public void name() {
+    @Override
+    public Cipher save(final Cipher entity) {
         
+
+        return dao.save(entity);
     }
 }

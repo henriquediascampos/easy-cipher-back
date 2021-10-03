@@ -27,7 +27,6 @@ public abstract class AbstractController<T extends AbstractEntity, ID> {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<T> list(@RequestParam(required = false) final Map<String, String> parameters) {
-        System.out.println();
         return service.list(parameters);
     }
 

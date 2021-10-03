@@ -30,7 +30,9 @@ public class SongbookDAO extends AbstractDAO<Songbook, UUID> {
             root.get("id"),
             root.get("title"),
             root.get("vision")
-        );
+        )
+        // .where(builder.equal(root.get("delete"), false))
+        ;
 
         return entityManager.createQuery(query).getResultList();
     }
