@@ -23,7 +23,6 @@ public abstract class AbstractEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
     @Column(columnDefinition = "boolean default false")
     private Boolean deleted;
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

@@ -24,7 +24,7 @@ public class SongbookService extends AbstractService<Songbook, UUID>{
             throw new BadRequestException(translate.getMessage("validation.duplicate.data"));
         }
         songbook.setTitle(songbook.getTitle().toUpperCase());
-        return dao.save(songbook);
+        return dao.savaOrUpdate(songbook);
     }
 
     public List<SongbookDTO> resumeList() {

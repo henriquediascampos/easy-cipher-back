@@ -27,11 +27,11 @@ public abstract class AbstractService <T extends AbstractEntity, ID> {
     }
 
     public T save(final T entity) {
-        return dao.save(entity);
+        return dao.savaOrUpdate(entity);
     }
 
     public T update(final T entity) {
-        return dao.update(entity);
+        return dao.savaOrUpdate(entity);
     }
 
     public boolean delete(final UUID id) {

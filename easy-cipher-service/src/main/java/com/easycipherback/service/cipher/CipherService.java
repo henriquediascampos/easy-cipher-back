@@ -10,10 +10,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class CipherService extends AbstractService<Cipher, UUID> {
 
+
+
     @Override
     public Cipher save(final Cipher entity) {
-        
+        if (entity.getId() != null) {
+            return update(entity);
+        } else {
+            return dao.savaOrUpdate(entity);
+        }
+    }
 
-        return dao.save(entity);
+
+    @Override
+    public Cipher update(final Cipher entity) {
+        Cipher entityToPersit = dao.findById(entity.getId());
+        entityToPersit.setCipher(entity.getCipher());
+        entityToPersit.setLyric(entity.getLyric());
+        entityToPersit.setTone(entity.getTone());
+        entityToPersit.setTitle(entity.getTitle());
+        entityToPersit.setVision(entity.getVision());
+        return dao.savaOrUpdate(entityToPersit);
     }
 }

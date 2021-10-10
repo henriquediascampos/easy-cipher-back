@@ -1,5 +1,7 @@
 package com.easycipherback.service.abstracts;
 
+import static java.util.Objects.nonNull;
+
 import java.lang.reflect.ParameterizedType;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -12,8 +14,13 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 
+import com.easycipherback.common.exceptions.BadRequestException;
 import com.easycipherback.entity.abstracts.AbstractEntity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import lombok.Getter;
 @Transactional
 public abstract class AbstractDAO<T extends AbstractEntity, ID> {
 
@@ -22,29 +29,52 @@ public abstract class AbstractDAO<T extends AbstractEntity, ID> {
 
     private final Class<T> clazz;
 
+    @Getter
+    @Autowired(required = false)
+    private JpaRepository<T, ID> repository;
+
     @SuppressWarnings("unchecked")
     public AbstractDAO() {
         this.clazz = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
-    public T save(final T entity) {
+    public T savaOrUpdate(final T entity) {
+        if (nonNull(entity.getId())) {
+            return update(entity);
+        } else {
+            return save(entity);
+        }
+    }
+    private T save(final T entity) {
         entity.setCreatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
         entity.setDeleted(false);
-        entityManager.persist(entity);
+        saveAndFlush(entity);
         return entity;
     }
 
-    public T merge(final T entity) {
-        return entityManager.merge(entity);
-    }
-
-    public T update(final T entity) {
+    private T update(final T entity) {
         entity.setUpdatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
-        return entityManager.merge(entity);
+        return mergeAndFlush(entity);
     }
 
+    private void saveAndFlush(final T entity) {
+        entityManager.persist(entity);
+        entityManager.flush();
+    }
+    private T mergeAndFlush(final T entity) {
+        final var persisted = entityManager.merge(entity);
+        entityManager.flush();
+        return  persisted;
+    }
+
+    @SuppressWarnings("unchecked")
     public T findById(final UUID uuid) {
-        return entityManager.find(clazz, uuid);
+        final var optional = getRepository().findById((ID) uuid);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+
+        throw new BadRequestException("Patos nao encontrado");
 	}
 
     public List<T> findAll() {
@@ -53,15 +83,15 @@ public abstract class AbstractDAO<T extends AbstractEntity, ID> {
         return entityManager.createQuery(query).getResultList();
     }
 
-    public Query createQuery(String alias) {
+    public Query createQuery(final String alias) {
         return entityManager.createQuery(clazz.getSimpleName() + " " + alias);
     }
 
-    public boolean delete(UUID id) {
+    public boolean delete(final UUID id) {
         final var entity = findById(id);
         entity.setUpdatedAt(ZonedDateTime.now(ZoneId.systemDefault()));
         entity.setDeleted(true);
-        entityManager.persist(entity);
+        mergeAndFlush(entity);
         return true;
     }
 }
