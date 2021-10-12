@@ -1,6 +1,7 @@
 
 package com.easycipherback.webConfig;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -37,7 +38,7 @@ public class webConfig implements WebMvcConfigurer {
         if (Objects.nonNull(origin) && !origin.isEmpty()) {
             log.info("ORIGINS:                      " +origin);
             registry.addMapping("/**")
-                .allowedOrigins(origin.split(","))
+                .allowedOrigins(origin)
                 .allowedHeaders("*")
                 .allowedMethods("GET", "POST", "PUT", "PATH", "OPTIONS", "DELETE")
                 .allowedHeaders("*");
