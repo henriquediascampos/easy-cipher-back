@@ -49,6 +49,8 @@ project(":easy-cipher-entity") {
 	dependencies {
 		api "org.springframework.boot:spring-boot-starter-data-jpa:${spring}"
 		api "org.postgresql:postgresql:${postgres}"
+		api 'org.hibernate:hibernate-core:5.5.7.Final'
+		api 'org.hibernate:hibernate-entitymanager:5.5.7.Final'
 		api project(":easy-cipher-common")
 		api 'javax.validation:validation-api:2.0.1.Final'
 	}
