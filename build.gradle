@@ -78,10 +78,9 @@ project(":easy-cipher-controller") {
     }
 
     bootJar {
-        // archiveBaseName.set("easy-cipher-back")
-        // version =  ""
-        // version =  project.version
-		archiveFileName.set("easy-cipher-back.jar")
+		archiveBaseName.set(project.name)
+        version =  project.version
+		// archiveFileName.set("easy-cipher-back.jar")
 
 		launchScript()
 

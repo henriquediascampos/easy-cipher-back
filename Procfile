@@ -1,1 +1,1 @@
-web: java -jar build/libs/easy-cipher-back.jar
+web: java -jar build/libs/easy-cipher-controller-0.0.1-SNAPSHOT.jar
