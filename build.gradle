@@ -73,4 +73,33 @@ project(":easy-cipher-controller") {
 		// testImplementation "org.springframework.boot:spring-boot-starter-test"
 	}
 
+    springBoot {
+        buildInfo()
+    }
+
+    bootJar {
+        // archiveBaseName.set("easy-cipher-back")
+        // version =  ""
+        // version =  project.version
+		archiveFileName.set("easy-cipher-back.jar")
+
+		launchScript()
+
+        manifest { attributes("Implementation-Version": version) }
+
+        if (project.hasProperty("archiveName")) {
+            archiveFileName.set(project.properties["archiveName"] as String)
+        }
+    }
+
+    task copy(type: Copy) {
+        delete rootProject.file("build/")
+        includeEmptyDirs = true
+        def fromDir = rootProject.file("${project.name}/build/libs/")
+        def toDir = rootProject.file("build/libs/")
+        from fromDir
+        into toDir
+    }
+
+    build.dependsOn copy, bootBuildInfo
 }
