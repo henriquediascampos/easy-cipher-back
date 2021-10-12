@@ -10,11 +10,8 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import lombok.extern.slf4j.Slf4j;
-
 @EnableWebMvc
 @Configuration
-@Slf4j
 public class webConfig implements WebMvcConfigurer {
 
     @Value("${origin-client}")
@@ -30,13 +27,10 @@ public class webConfig implements WebMvcConfigurer {
         // registry.addViewController("/").setViewName("index");
     }
 
-    public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-                log.info("config cors               ===========> "+origin);
-				registry.addMapping("/greeting-javaconfig").allowedOrigins(origin);
-			}
-		};
+    @Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**")
+            .allowedOrigins(origin)
+            .allowedMethods("*");
 	}
 }
