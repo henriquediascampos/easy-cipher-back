@@ -8,9 +8,9 @@ import com.easycipherback.service.abstracts.AbstractDAO;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class cipherDAO extends AbstractDAO<Cipher, UUID> {
-    
+public class CipherDAO extends AbstractDAO<Cipher, UUID> {
+
     public void teste() {
-        
+
     }
 }
