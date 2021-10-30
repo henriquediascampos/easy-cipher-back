@@ -30,6 +30,7 @@ public class CipherService extends AbstractService<Cipher, UUID> {
         entityToPersit.setTone(entity.getTone());
         entityToPersit.setTitle(entity.getTitle());
         entityToPersit.setVision(entity.getVision());
+        entityToPersit.setTags(entity.getTags());
         return dao.savaOrUpdate(entityToPersit);
     }
 }
