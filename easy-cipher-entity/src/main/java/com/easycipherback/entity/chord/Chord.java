@@ -30,7 +30,9 @@ public class Chord extends AbstractEntity {
     @Column(length = 10)
     private String chord;
     @NotNull
-    @Column(length = 5000)
+    @Column(length = 1000)
     private String chordMapped;
-
+    @NotNull
+    @Column(length = 1000)
+    private String mappedAll;
 }

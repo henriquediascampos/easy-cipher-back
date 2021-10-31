@@ -37,6 +37,8 @@ public class Cipher extends AbstractEntity {
 
     private String tone;
 
+    private String tags;
+
     @Enumerated(EnumType.STRING)
     private EVision vision;
 }
