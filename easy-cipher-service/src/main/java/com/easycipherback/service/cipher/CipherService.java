@@ -24,7 +24,7 @@ public class CipherService extends AbstractService<Cipher, UUID> {
 
     @Override
     public Cipher update(final Cipher entity) {
-        Cipher entityToPersit = dao.findById(entity.getId());
+        final Cipher entityToPersit = dao.findById(entity.getId());
         entityToPersit.setCipher(entity.getCipher());
         entityToPersit.setLyric(entity.getLyric());
         entityToPersit.setTone(entity.getTone());
