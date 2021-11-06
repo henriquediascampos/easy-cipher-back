@@ -1,4 +1,5 @@
 rootProject.name = 'easy-cipher'
 
+include 'easy-cipher-liquibase'
 include 'easy-cipher-common'
 include 'easy-cipher-controller', 'easy-cipher-service', 'easy-cipher-entity'

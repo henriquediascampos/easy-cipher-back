@@ -43,6 +43,14 @@ project(":easy-cipher-common") {
 	}
 }
 
+project(":easy-cipher-liquibase") {
+    sourceCompatibility = "11"
+	dependencies {
+		implementation project(":easy-cipher-common")
+		api 'org.liquibase:liquibase-core:4.5.0'
+	}
+}
+
 project(":easy-cipher-entity") {
     sourceCompatibility = "11"
 
@@ -51,8 +59,9 @@ project(":easy-cipher-entity") {
 		api "org.postgresql:postgresql:${postgres}"
 		api 'org.hibernate:hibernate-core:5.5.7.Final'
 		api 'org.hibernate:hibernate-entitymanager:5.5.7.Final'
-		api project(":easy-cipher-common")
 		api 'javax.validation:validation-api:2.0.1.Final'
+		implementation project(":easy-cipher-common")
+		api project(":easy-cipher-liquibase")
 	}
 }
 
@@ -60,6 +69,7 @@ project(":easy-cipher-service") {
     sourceCompatibility = "11"
 
 	dependencies {
+		implementation project(":easy-cipher-common")
 		api project(":easy-cipher-entity")
 	}
 }
@@ -69,6 +79,7 @@ project(":easy-cipher-controller") {
 	apply plugin: "org.springframework.boot"
 
 	dependencies {
+		implementation project(":easy-cipher-common")
 		api project(":easy-cipher-service")
 		implementation "org.springframework.boot:spring-boot-starter-web:${spring}"
 		implementation "org.springframework.boot:spring-boot-starter-validation:${spring}"

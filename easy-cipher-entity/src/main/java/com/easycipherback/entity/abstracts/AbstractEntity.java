@@ -29,8 +29,8 @@ public abstract class AbstractEntity implements Serializable {
     private ZonedDateTime createdAt;
     @Column
     private ZonedDateTime updatedAt;
-    @Column
-    private UUID createdBy;
-    @Column
-    private UUID updatedBy;
+    @Column(length = 255)
+    private String createdBy;
+    @Column(length = 255)
+    private String updatedBy;
 }

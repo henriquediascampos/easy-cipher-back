@@ -16,15 +16,4 @@ public class TranslateConfigure {
         return messageSource;
     }
 
-    // @Bean
-    // public MessageSourceAccessor getMessageSourceAccessor(final MessageSource messageSource) {
-    //     return new MessageSourceAccessor(messageSource, Locale.US);
-    // }
-
-    // @Bean
-    // public Validator getValidator() {
-    //     final LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-    //     bean.setMessageInterpolator(new ResourceBundleMessageInterpolator());
-    //     return bean;
-    // }
 }
