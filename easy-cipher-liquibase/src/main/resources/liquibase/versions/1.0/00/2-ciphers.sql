@@ -2,6 +2,7 @@
 
 --changeset henrique.campos:insert_values:cipher_initials
 --preconditions onFail:MARK_RAN onError:HALT
+--precondition-sql-check expectedResult:0 select count(*) from cipher
 --comment: insert the initial ciphers
 INSERT INTO cipher (id, deleted, created_at, created_by, cipher, tags, title, lyric)
 VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, '', 'CD17',

@@ -2,6 +2,7 @@
 
 --changeset henrique.campos:insert_values:chord_initials
 --preconditions onFail:MARK_RAN onError:HALT
+--precondition-sql-check expectedResult:0 select count(*) from chord
 --comment: insert the initial chords
 INSERT INTO chord (id, deleted, created_at, created_by, chord, chord_mapped, mapped_all) VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, 'C', '[{"house":-1,"string":0},{"house":0,"string":1},{"house":-1,"string":2},{"house":1,"string":3},{"house":2,"string":4}]', '[{"house":-1,"string":0},{"house":0,"string":1},{"house":-1,"string":2},{"house":1,"string":3},{"house":2,"string":4}]');
 INSERT INTO chord (id, deleted, created_at, created_by, chord, chord_mapped, mapped_all) VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, 'C7', '[{"house":-1,"string":0},{"house":0,"string":1},{"house":2,"string":2},{"house":1,"string":3},{"house":2,"string":4}]', '[{"house":-1,"string":0},{"house":0,"string":1},{"house":-1,"string":2},{"house":2,"string":2},{"house":1,"string":3},{"house":2,"string":4}]');

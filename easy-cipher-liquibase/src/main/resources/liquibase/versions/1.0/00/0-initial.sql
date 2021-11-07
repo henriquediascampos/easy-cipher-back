@@ -37,8 +37,8 @@ create table cipher (
     updated_at ${zonedDateTime},
     created_by ${varchar}(255),
     updated_by ${varchar}(255),
-    lyric ${varchar}(5000) NOT NULL,
-    title ${varchar}(50) NOT NULL,
+    lyric ${varchar}(5000) NOT NULL UNIQUE,
+    title ${varchar}(50) NOT NULL UNIQUE,
     cipher ${varchar}(5000) NOT NULL,
     tone ${varchar}(10),
     tags ${varchar}(500),
@@ -71,7 +71,7 @@ create table songbook (
     updated_at ${zonedDateTime},
     created_by ${varchar}(255),
     updated_by ${varchar}(255),
-    title ${varchar}(50) NOT NULL,
+    title ${varchar}(50) NOT NULL UNIQUE,
     vision ${varchar}(20)
 );
 COMMENT ON TABLE songbook IS 'table used to store ciphers';
@@ -96,7 +96,7 @@ create table custom_cipher (
     updated_at ${zonedDateTime},
     created_by ${varchar}(255),
     updated_by ${varchar}(255),
-    customTone ${varchar}(10) NOT NULL,
+    custom_tone ${varchar}(10) NOT NULL,
     cipher_id ${uuid} NOT NULL,
     songbook_id ${uuid} NOT NULL,
     FOREIGN KEY (cipher_id) REFERENCES cipher(id),
@@ -109,6 +109,6 @@ COMMENT ON COLUMN custom_cipher.created_at IS 'column used to store creation dat
 COMMENT ON COLUMN custom_cipher.updated_at IS 'column used to store actualization date';
 COMMENT ON COLUMN custom_cipher.created_by IS 'column used to store creation user';
 COMMENT ON COLUMN custom_cipher.updated_by IS 'column used to store the update user';
-COMMENT ON COLUMN custom_cipher.customTone Is 'column used to store the tone customized which song should be played';
+COMMENT ON COLUMN custom_cipher.custom_tone Is 'column used to store the tone customized which song should be played';
 COMMENT ON COLUMN custom_cipher.cipher_id Is 'cipher table reference';
 COMMENT ON COLUMN custom_cipher.songbook_id Is 'songbook table reference';
