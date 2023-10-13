@@ -1,7 +1,5 @@
 package com.easycipherback.liquibase;
 
-import java.util.UUID;
-
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +7,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import liquibase.integration.spring.SpringLiquibase;
+import lombok.extern.slf4j.Slf4j;
 
 @Configuration
+@Slf4j
 public class LiquibaseConfiguration {
 
     @Autowired
@@ -30,13 +30,12 @@ public class LiquibaseConfiguration {
 
     @Bean
     public SpringLiquibase liquibase() {
+
+        log.info("\n\n\n\nteste\n\n\n\n");
+
         SpringLiquibase liquibase = new SpringLiquibase();
         liquibase.setChangeLog("classpath:liquibase/liquibase.yml");
         liquibase.setDataSource(dataSource);
-        System.out.println(UUID.randomUUID());
-        // final var properties = Map.of("schema", defaultSchema, "application_name", applicationName);
-        // liquibase.setChangeLogParameters(properties);
-        // liquibase.setDefaultSchema(defaultSchema);
         return liquibase;
     }
 

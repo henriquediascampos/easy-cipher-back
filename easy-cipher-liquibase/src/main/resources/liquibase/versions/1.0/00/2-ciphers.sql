@@ -69,10 +69,26 @@ Não entende, se Deus está na frente, Ele dará a direção
 Tu verás que somente esse Deus, Ele é a solução'
 );
 
-INSERT INTO cipher (id, deleted, created_at, created_by, cipher, tags, title, lyric)
-VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, '', 'CD17',
-'Soldado do senhor',
-'O Senhor me falou, o Senhor me falou
+-- INSERT INTO cipher (id, deleted, created_at, created_by, cipher, tags, title, lyric)
+-- VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, '', 'CD17',
+-- 'Soldado do senhor',
+-- 'O Senhor me falou, o Senhor me falou
+-- Sou um soldado, soldadinho do Senhor
+-- Por onde eu ando, eu prego amor
+-- Eu prego Yehoshua, meu Senhor
+-- Cabanas chegou, eu me alegro
+-- E alegro o meu Senhor
+-- Não me aguento de tanta felicidade
+-- Eu amo as Suas festividades
+-- É com amor é com o coração
+-- Tem que amar e perdoar o seu irmão É com amor é para o Senhor
+-- Tem que estar livre do ódio e do rancor
+-- O Senhor me falou, o Senhor me falou
+-- Sou um soldado, soldadinho do Senhor'
+-- );
+
+INSERT INTO cipher (id, deleted, created_at, created_by, lyric, title, cipher, tags)
+VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, NULL, 'O Senhor me falou, o Senhor me falou
 Sou um soldado, soldadinho do Senhor
 Por onde eu ando, eu prego amor
 Eu prego Yehoshua, meu Senhor
@@ -81,11 +97,15 @@ E alegro o meu Senhor
 Não me aguento de tanta felicidade
 Eu amo as Suas festividades
 É com amor é com o coração
-Tem que amar e perdoar o seu irmão É com amor é para o Senhor
+Tem que amar e perdoar o seu irmão
+É com amor é para o Senhor
 Tem que estar livre do ódio e do rancor
 O Senhor me falou, o Senhor me falou
-Sou um soldado, soldadinho do Senhor'
-);
+Sou um soldado, soldadinho do Senhor',
+'Soldado do senhor',
+'[{"content":"         Em                  Am                                          ","type":"cipher"},{"type":"text","content":"O Senhor me falou, o Senhor me falou"},{"content":"           B7                      Em                                    ","type":"cipher"},{"type":"text","content":"Sou um soldado, soldadinho do Senhor"},{"content":"            Em              Am                                           ","type":"cipher"},{"type":"text","content":"Por onde eu ando, eu prego amor"},{"content":"         B7                 Em                                           ","type":"cipher"},{"type":"text","content":"Eu prego Yehoshua, meu Senhor"},{"content":"   Em                  Am                                                ","type":"cipher"},{"type":"text","content":"Cabanas chegou, eu me alegro"},{"content":"    B7              Em                                                   ","type":"cipher"},{"type":"text","content":"E alegro o meu Senhor"},{"content":"       Am                      D                                        ","type":"cipher"},{"type":"text","content":"Não me aguento de tanta felicidade"},{"content":"   C        B7          Em                                               ","type":"cipher"},{"type":"text","content":"Eu amo as Suas festividades"},{"content":"      Em               Am                                                ","type":"cipher"},{"type":"text","content":"É com amor é com o coração"},{"content":"          B7                     Em                                      ","type":"cipher"},{"type":"text","content":"Tem que amar e perdoar o seu irmão "},{"content":"        Em            Am                                                 ","type":"cipher"},{"type":"text","content":"É com amor é para o Senhor"},{"content":"               B7                     Em                                 ","type":"cipher"},{"type":"text","content":"Tem que estar livre do ódio e do rancor"},{"content":"          Em                  Am                                         ","type":"cipher"},{"type":"text","content":"O Senhor me falou, o Senhor me falou"},{"content":"           D          B7           Am    D  Em                           ","type":"cipher"},{"type":"text","content":"Sou um soldado, soldadinho do Senhor"}]',
+'Em', 'CD17');
+
 
 INSERT INTO cipher (id, deleted, created_at, created_by, cipher, tags, title, lyric)
 VALUES(${generate_uuid}, ${false}, ${zonedDateTime_now}, ${created_by_liquibase}, '', 'CD17',

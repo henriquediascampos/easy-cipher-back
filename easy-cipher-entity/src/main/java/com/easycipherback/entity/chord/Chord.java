@@ -2,12 +2,9 @@ package com.easycipherback.entity.chord;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import com.easycipherback.entity.abstracts.AbstractEntity;
-import com.easycipherback.entity.enums.EVision;
 
 import org.hibernate.annotations.Where;
 
